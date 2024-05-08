@@ -134,6 +134,31 @@ do
     })
 
 
+    Tabs.Main:AddButton({
+        Title = "Catch Ball (must be gk)",
+        Description = "click to catch ball",
+        Callback = function()
+            Window:Dialog({
+                Title = "Are you sure?",
+                Content = "Are you sure to catch ball?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            game.ReplicatedStorage.Events.CatchBall:FireServer(game.Workspace.CSF)
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            
+                        end
+                    }
+                }
+            })
+        end
+    })
+
     local Toggle = Tabs.Main:AddToggle("toogle", {Title = "Auto React", Default = false })
 
     Toggle:OnChanged(function(isToggled)
@@ -149,6 +174,23 @@ do
             end
         else
             _G.autoTouch5 = false
+        end
+    end)
+    
+    Options.toogle:SetValue(false)
+
+
+    local Toggle = Tabs.Main:AddToggle("toogle", {Title = "Auto GK Catch (must be gk)", Default = false })
+
+    Toggle:OnChanged(function(isToggled)
+        if isToggled then
+            _G.autoTouch6 = true
+            
+            while _G.autoTouch6 == true do
+                game.ReplicatedStorage.Events.CatchBall:FireServer(game.Workspace.CSF)
+            end
+        else
+            _G.autoTouch6 = false
         end
     end)
     
