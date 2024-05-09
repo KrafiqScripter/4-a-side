@@ -188,6 +188,7 @@ do
             
             while _G.autoTouch6 == true do
                 game.ReplicatedStorage.Events.CatchBall:FireServer(game.Workspace.CSF)
+                wait()
             end
         else
             _G.autoTouch6 = false
