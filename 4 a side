@@ -51,10 +51,13 @@ do
                         Title = "Yes",
                         Callback = function()
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.CSF.CFrame
-    wait(0.1)
-    game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ownershipChange"):FireServer(unpack(args))
-    wait()
-    game.Workspace.CSF.CFrame = CFrame.new(17, 17, -276)
+                            wait(0.1)
+                            local args = {
+                                [1] = workspace:WaitForChild("CSF")
+                            }
+                            game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ownershipChange"):FireServer(unpack(args))
+                            wait(0.1)
+                            game.Workspace.CSF.CFrame = CFrame.new(17, 17, -276)
                         end
                     },
                     {
@@ -81,6 +84,9 @@ do
                         Callback = function()
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.CSF.CFrame
     wait(0.1)
+    local args = {
+        [1] = workspace:WaitForChild("CSF")
+    }
     game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ownershipChange"):FireServer(unpack(args))
     wait()
     game.Workspace.CSF.CFrame = CFrame.new(18, 17, 270)
@@ -330,12 +336,5 @@ Fluent:Notify({
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
-
-
-
-
-
-
-
 
 
