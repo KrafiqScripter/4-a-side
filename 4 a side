@@ -15,6 +15,8 @@ local Window = Fluent:CreateWindow({
 --Fluent provides Lucide Icons https://lucide.dev/icons/ for the tabs, icons are optional
 local Tabs = {
     Main = Window:AddTab({ Title = "Main", Icon = "" }),
+    Extras = Window:AddTab({ Title = "Extras", Icon = "" }),
+    Ball = Window:AddTab({ Title = "Ball Moves", Icon = "" }),
     Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
 }
 
@@ -50,28 +52,9 @@ do
                         Callback = function()
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.CSF.CFrame
     wait(0.1)
-    local args = {
-        [1] = workspace:WaitForChild("CSF")
-    }
     game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ownershipChange"):FireServer(unpack(args))
-    wait(0.1)
-    delay_go_air = 1 
-    tween_speed = 1 
-    current_position = game.Workspace.CSF.Position
-    target_position1 = CFrame.new(current_position) * CFrame.new(0, 20, 0) 
-    target_position2 = CFrame.new(17, 17, -276) * CFrame.new(0, 20, 0) 
-    target_position3 = CFrame.new(17, 17, -276) 
-    TweenI = TweenInfo.new(1, Enum.EasingStyle.Linear) 
-    local tween1 = game:GetService('TweenService'):Create(game.Workspace.CSF, TweenI, {CFrame = target_position1}) 
-    tween1:Play() 
-    tween1.Completed:Wait() 
-    TweenI = TweenInfo.new(1, Enum.EasingStyle.Linear) 
-    local tween2 = game:GetService('TweenService'):Create(game.Workspace.CSF, TweenI, {CFrame = target_position2}) 
-    tween2:Play() 
-    tween2.Completed:Wait() 
-    local tween3 = game:GetService('TweenService'):Create(game.Workspace.CSF, TweenI, {CFrame = target_position3}) 
-    tween3:Play() 
-    tween3.Completed:Wait()
+    wait()
+    game.Workspace.CSF.CFrame = CFrame.new(17, 17, -276)
                         end
                     },
                     {
@@ -98,28 +81,9 @@ do
                         Callback = function()
                             game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game.Workspace.CSF.CFrame
     wait(0.1)
-    local args = {
-        [1] = workspace:WaitForChild("CSF")
-    }
     game:GetService("ReplicatedStorage"):WaitForChild("Events"):WaitForChild("ownershipChange"):FireServer(unpack(args))
-    wait(0.1)
-    delay_go_air = 1 
-    tween_speed = 1 
-    current_position = game.Workspace.CSF.Position 
-    target_position1 = CFrame.new(current_position) * CFrame.new(0, 20, 0) 
-    target_position2 = CFrame.new(18, 17, 270) * CFrame.new(0, 20, 0) 
-    target_position3 = CFrame.new(18, 17, 270) 
-    TweenI = TweenInfo.new(1, Enum.EasingStyle.Linear) 
-    local tween1 = game:GetService('TweenService'):Create(game.workspace.CSF, TweenI, {CFrame = target_position1}) 
-    tween1:Play() 
-    tween1.Completed:Wait() 
-    TweenI = TweenInfo.new(1, Enum.EasingStyle.Linear) 
-    local tween2 = game:GetService('TweenService'):Create(game.workspace.CSF, TweenI, {CFrame = target_position2}) 
-    tween2:Play() 
-    tween2.Completed:Wait() 
-    local tween3 = game:GetService('TweenService'):Create(game.workspace.CSF, TweenI, {CFrame = target_position3}) 
-    tween3:Play() 
-    tween3.Completed:Wait()
+    wait()
+    game.Workspace.CSF.CFrame = CFrame.new(18, 17, 270)
                         end
                     },
                     {
@@ -198,24 +162,6 @@ do
     Options.toogle:SetValue(false)
 
 
-    
-    local Slider = Tabs.Main:AddSlider("Slider", {
-        Title = "Speed",
-        Description = "Change Your Speed",
-        Default = 20,
-        Min = 0,
-        Max = 200,
-        Rounding = 1,
-        Callback = function(Value)
-            game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = Value
-        end
-    })
-
-    Slider:OnChanged(function(Value)
-        
-    end)
-
-    Slider:SetValue(20)
 
 
     Tabs.Main:AddButton({
@@ -241,6 +187,42 @@ do
                 }
             })
         end
+    })
+
+    Tabs.Extras:AddButton({
+        Title = "Get Admin (Infinite Yield)",
+        Description = "click to get admin",
+        Callback = function()
+            Window:Dialog({
+                Title = "Are you sure?",
+                Content = "Are you sure to get admin?",
+                Buttons = {
+                    {
+                        Title = "Yes",
+                        Callback = function()
+                            loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+                        end
+                    },
+                    {
+                        Title = "No",
+                        Callback = function()
+                            
+                        end
+                    }
+                }
+            })
+        end
+    })
+
+
+
+
+
+
+
+    Tabs.Ball:AddParagraph({
+        Title = "Soon, 4 a side script",
+        Content = "Will be added soon.."
     })
 
 
@@ -348,3 +330,12 @@ Fluent:Notify({
 -- You can use the SaveManager:LoadAutoloadConfig() to load a config
 -- which has been marked to be one that auto loads!
 SaveManager:LoadAutoloadConfig()
+
+
+
+
+
+
+
+
+
